@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- App favicon -->
+    <link rel="shortcut icon" href="{{ asset('image/icon/icon-suara.png') }}">
     {{-- @vite('resources/css/app.css') --}}
     <link rel="stylesheet" href="{{ asset('dist/css/build.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
