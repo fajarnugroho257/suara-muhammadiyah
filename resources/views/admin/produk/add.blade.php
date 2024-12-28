@@ -62,7 +62,7 @@
                                     <select class="form-control select2" name="kategori_id" style="width: 100%;">
                                         <option value=""></option>
                                         @foreach ($rs_kategori as $kategori)
-                                            <option value="{{ $kategori->id }}" @selected(old('kategori_id') == $kategori->id)>
+                                            <option value="{{ $kategori->kategori_id }}" @selected(old('kategori_id') == $kategori->kategori_id)>
                                                 {{ $kategori->kategori_nama }}</option>
                                         @endforeach
                                     </select>
