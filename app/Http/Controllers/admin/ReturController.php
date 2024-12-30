@@ -131,7 +131,7 @@ class ReturController extends Controller
             $html .= $value->produk->produk_nama;
             $html .= '  </td>';
             $html .= '<td class="text-center"> <img width="150" height="150" class=""
-                                                src=' . asset('image/produk/' . $value->produk->produk_image) . '
+                                                src="' . asset('image/produk/' . $value->produk->produk_image) . '"
                                                 alt=""></td>';
             $html .= '  <td class="text-right">';
             $html .= 'Rp. ' . number_format($value->produk->produk_harga, 0, ',', '.');
