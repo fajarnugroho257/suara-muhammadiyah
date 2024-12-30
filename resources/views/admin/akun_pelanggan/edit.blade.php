@@ -52,12 +52,19 @@
                             </div>
                         @endsession
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-3">
                                 <div class="form-group">
                                     <label>Nama lengkap</label>
                                     <input type="text"
                                         value="{{ old('user_nama_lengkap', $detail->users_data->user_nama_lengkap) }}"
                                         name="user_nama_lengkap" class="form-control" placeholder="Nama Lengkap">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label>NIK</label>
+                                    <input type="text" value="{{ old('nik', $detail->nik) }}" name="nik"
+                                        class="form-control" placeholder="NIK">
                                 </div>
                             </div>
                             <div class="col-6">

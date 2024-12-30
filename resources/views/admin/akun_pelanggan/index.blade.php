@@ -44,6 +44,7 @@
                         <thead>
                             <tr class="text-center">
                                 <th style="width: 10px">No</th>
+                                <th>NIK</th>
                                 <th>Nama</th>
                                 <th>Profil</th>
                                 <th>Username</th>
@@ -57,6 +58,7 @@
                             @foreach ($rs_pelanggan as $key => $pelanggan)
                                 <tr>
                                     <td class="text-center">{{ $rs_pelanggan->firstItem() + $key }}</td>
+                                    <td>{{ $pelanggan->nik }}</td>
                                     <td>{{ $pelanggan->users_data->user_nama_lengkap }}</td>
                                     <td><img class="img-fluid img-thumbnail" height="150" width="150"
                                             src="{{ asset('image/profil/' . $pelanggan->users_data->image) }}"

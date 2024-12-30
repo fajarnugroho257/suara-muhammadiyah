@@ -37,6 +37,7 @@ class AkunpelangganController extends Controller
         $request->validate([
             'username' => 'required|unique:users,username',
             'password' => 'required|min:6',
+            'nik' => 'required',
             'user_nama_lengkap' => 'required',
             'user_alamat' => 'required',
             'user_telp' => 'required',
@@ -63,6 +64,7 @@ class AkunpelangganController extends Controller
                 'name' => $request->user_nama_lengkap,
                 'role_id' => 'R0005',
                 'username' => $request->username,
+                'nik' => $request->nik,
                 'password' => bcrypt($request->password),
             ]);
             // insert user data
@@ -126,6 +128,7 @@ class AkunpelangganController extends Controller
         $request->validate([
             'username' => 'required|unique:users,username,' . $user_id . ',user_id',
             'password' => 'nullable|min:6',
+            'nik' => 'required',
             'user_nama_lengkap' => 'required',
             'user_alamat' => 'required',
             'user_telp' => 'required',
@@ -139,6 +142,7 @@ class AkunpelangganController extends Controller
         }
         $detail->name = $request->user_nama_lengkap;
         $detail->username = $request->username;
+        $detail->nik = $request->nik;
         if (!empty($request->password)) {
             $detail->password = bcrypt($request->password);
         }
