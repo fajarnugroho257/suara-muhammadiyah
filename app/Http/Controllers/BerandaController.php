@@ -25,9 +25,9 @@ class BerandaController extends Controller
         //
         $dt_kate = Kategori::where('slug', $kategori)->first();
         if ($kategori == 'all-product' || $kategori == '') {
-            $product = Produk::where('produk_nama', 'LIKE', $keyword)->get();
+            $product = Produk::where('produk_nama', 'LIKE', $keyword)->where('produk_stok', '>', 0)->get();
         } else {
-            $product = Produk::where('kategori_id', $dt_kate->kategori_id)->where('produk_nama', 'LIKE', $keyword)->get();
+            $product = Produk::where('kategori_id', $dt_kate->kategori_id)->where('produk_stok', '>', 0)->where('produk_nama', 'LIKE', $keyword)->get();
         }
         //
         $data['rs_kategori'] = Kategori::where('status', 'yes')->get();
@@ -238,7 +238,6 @@ class BerandaController extends Controller
     {
         // print_r($request->all());
         $detail = PesananData::where('data_id', $request->data_id)->first();
-        // dd($detail);
         if (empty($detail)) {
             // abort(404);
             return response()->json([
@@ -246,6 +245,7 @@ class BerandaController extends Controller
                 'message' => 'Data tidak tersedia!',
             ]);
         }
+        $pesanan_id = $detail->pesanan_id;
         if (!Auth::check()) {
             // login dulu
             return response()->json([
@@ -255,6 +255,13 @@ class BerandaController extends Controller
             ]);
         }
         if ($detail->delete()) {
+            // delete pesanan jika tidak ada data pesanan yang ada
+            // hitung data pesanan
+            $pesanan = Pesanan::findOrFail($pesanan_id);
+            $jlhPesanan = PesananData::where('pesanan_id', $pesanan_id)->count();
+            if ($jlhPesanan == 0) {
+                $pesanan->delete();
+            }
             return response()->json([
                 'success' => true,
                 'message' => 'Item berhasil dihapus',

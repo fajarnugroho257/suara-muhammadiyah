@@ -86,13 +86,13 @@
                                             name="produk_harga" class="form-control" placeholder="Harga">
                                     </div>
                                 </div>
-                                <div class="col-3">
+                                {{-- <div class="col-3">
                                     <div class="form-group">
                                         <label>Stok</label>
                                         <input type="number" value="{{ old('produk_stok', $detail->produk_stok) }}"
                                             name="produk_stok" class="form-control" placeholder="Stok">
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label>Gambar</label>
@@ -129,8 +129,7 @@
                                             <img class="img-fluid img-thumbnail"
                                                 src="{{ asset('image/produk/detail/' . $img->data_image) }}"
                                                 style="height: 100%; width: 100%">
-                                            <div class="position-absolute"
-                                                style="top: 5px; right: 20px; cursor: pointer;">
+                                            <div class="position-absolute" style="top: 5px; right: 20px; cursor: pointer;">
                                                 <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')"
                                                     href="{{ route('hapusImage', ['id' => $img->id]) }}"><i
                                                         class="fa fa-times text-danger"></i></a>

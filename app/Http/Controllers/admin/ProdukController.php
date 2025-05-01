@@ -42,7 +42,7 @@ class ProdukController extends Controller
             'produk_rating' => 'required',
             'produk_deskripsi' => 'required',
             'produk_harga' => 'required',
-            'produk_stok' => 'required',
+            // 'produk_stok' => 'required',
             'produk_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'data_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -65,7 +65,7 @@ class ProdukController extends Controller
             'produk_rating' => $request->produk_rating,
             'produk_deskripsi' => $request->produk_deskripsi,
             'produk_harga' => $request->produk_harga,
-            'produk_stok' => $request->produk_stok,
+            'produk_stok' => 0,
             'produk_image' => $produk_image,
         ]);
         if ($st_produk) {
@@ -147,7 +147,7 @@ class ProdukController extends Controller
             'produk_rating' => 'required',
             'produk_deskripsi' => 'required',
             'produk_harga' => 'required',
-            'produk_stok' => 'required',
+            // 'produk_stok' => 'required',
             'produk_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'data_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -169,7 +169,6 @@ class ProdukController extends Controller
         $detail->produk_rating = $request->produk_rating;
         $detail->produk_deskripsi = $request->produk_deskripsi;
         $detail->produk_harga = $request->produk_harga;
-        $detail->produk_stok = $request->produk_stok;
         $detail->produk_image = $produk_image;
         // update
         if ($detail->save()) {

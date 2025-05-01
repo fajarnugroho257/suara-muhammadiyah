@@ -4,10 +4,13 @@ use App\Http\Controllers\admin\AkunadminController;
 use App\Http\Controllers\admin\AkunpelangganController;
 use App\Http\Controllers\admin\MasterKategoriController;
 use App\Http\Controllers\admin\PendapatanController;
+use App\Http\Controllers\admin\PenerimaanController;
 use App\Http\Controllers\admin\PesananController;
 use App\Http\Controllers\admin\PrefController;
 use App\Http\Controllers\admin\ProdukController;
 use App\Http\Controllers\admin\ReturController;
+use App\Http\Controllers\admin\StokController;
+use App\Http\Controllers\admin\TersediaController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -176,6 +179,20 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::middleware(['hasRole.page:pendapatan'])->prefix('admin')->group(function () {
         Route::get('/data-pendapatan', [PendapatanController::class, 'index'])->name('pendapatan');
+    });
+    Route::middleware(['hasRole.page:barangTersedia'])->prefix('admin')->group(function () {
+        Route::get('/data-barang-tersedia', [TersediaController::class, 'index'])->name('barangTersedia');
+    });
+    Route::middleware(['hasRole.page:penerimaanBarang'])->prefix('admin')->group(function () {
+        Route::get('/data-penerimaan-barang', [PenerimaanController::class, 'index'])->name('penerimaanBarang');
+        Route::get('/add-data-penerimaan-barang', [PenerimaanController::class, 'create'])->name('addPenerimaanBarang');
+        Route::post('/add-proses-data-penerimaan-barang', [PenerimaanController::class, 'store'])->name('addProcessPenerimaanBarang');
+        Route::get('/edit-data-penerimaan-barang/{id}', [PenerimaanController::class, 'edit'])->name('updatePenerimaanBarang');
+        //
+        Route::get('/delete-process-data-penerimaan-barang/{id}', [PenerimaanController::class, 'destroy'])->name('deletePenerimaan');
+
+        // ajax
+        Route::post('/ajax-detail-produk', [PenerimaanController::class, 'get_detail_produk'])->name('ajaxDetailProduk');
     });
     //
     /* END YOUR ROUTE APLICATION */

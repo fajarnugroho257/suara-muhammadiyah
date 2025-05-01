@@ -36,4 +36,9 @@ class Produk extends Model
     {
         return $this->hasOne(PesananData::class, 'produk_id', 'id');
     }
+
+    public function penerimaan()
+    {
+        return $this->hasMany(Penerimaan::class, 'produk_id', 'id');
+    }
 }

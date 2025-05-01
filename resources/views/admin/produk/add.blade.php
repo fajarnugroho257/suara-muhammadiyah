@@ -90,14 +90,14 @@
                                             class="form-control" placeholder="Harga">
                                     </div>
                                 </div>
-                                <div class="col-3">
+                                {{-- <div class="col-3">
                                     <div class="form-group">
                                         <label>Stok</label>
                                         <input type="number" value="{{ old('produk_stok') }}" name="produk_stok"
                                             class="form-control" placeholder="Stok">
                                     </div>
-                                </div>
-                                <div class="col-6">
+                                </div> --}}
+                                <div class="col-3">
                                     <div class="form-group">
                                         <label>Gambar</label>
                                         <input type="file" value="" name="produk_image" class="form-control"
