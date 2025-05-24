@@ -4,20 +4,19 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\admin\Produk;
-use DB;
 use Illuminate\Http\Request;
 
-class TersediaController extends Controller
+class NotifRecorderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data['title'] = 'Data Stok Barang';
-        $data['rs_produk'] = Produk::with('kategori')->orderBy(DB::raw('CAST(produk_stok AS UNSIGNED)'), 'DESC')->paginate(20);
+        $data['title'] = 'Notifikasi Recorder';
+        $data['rs_produk'] = Produk::with('hitung_eoq')->orderBy('produk_nama', 'ASC')->paginate(20);
         // dd($data);
-        return view('admin.tersedia.index', $data);
+        return view('admin.notif_recorder.index', $data);
     }
 
     /**

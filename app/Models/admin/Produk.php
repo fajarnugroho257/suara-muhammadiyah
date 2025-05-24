@@ -41,4 +41,9 @@ class Produk extends Model
     {
         return $this->hasMany(Penerimaan::class, 'produk_id', 'id');
     }
+
+    public function hitung_eoq()
+    {
+        return $this->hasOne(HitungEoq::class, 'produk_id', 'id');
+    }
 }

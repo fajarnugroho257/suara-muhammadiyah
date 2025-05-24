@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\admin\AkunadminController;
 use App\Http\Controllers\admin\AkunpelangganController;
+use App\Http\Controllers\admin\HitungEoqController;
 use App\Http\Controllers\admin\MasterKategoriController;
+use App\Http\Controllers\admin\NotifRecorderController;
 use App\Http\Controllers\admin\PendapatanController;
 use App\Http\Controllers\admin\PenerimaanController;
 use App\Http\Controllers\admin\PesananController;
@@ -193,6 +195,18 @@ Route::middleware(['auth'])->group(function () {
 
         // ajax
         Route::post('/ajax-detail-produk', [PenerimaanController::class, 'get_detail_produk'])->name('ajaxDetailProduk');
+    });
+    // OEQ
+    Route::middleware(['hasRole.page:hitungEoq'])->prefix('admin')->group(function () {
+        Route::get('/hitungEoq', [HitungEoqController::class, 'index'])->name('hitungEoq');
+        Route::post('/cari-eoq', [HitungEoqController::class, 'cari_eoq'])->name('cariEoq');
+        Route::post('/simpan-eoq-process', [HitungEoqController::class, 'store'])->name('simpanEoqProcess');
+        Route::post('/hitungEoq-process', [HitungEoqController::class, 'hitungEOQ'])->name('hitungEoqProcess');
+    });
+
+    // notif
+    Route::middleware(['hasRole.page:notifRecorder'])->prefix('admin')->group(function () {
+        Route::get('/notif-recorder', [NotifRecorderController::class, 'index'])->name('notifRecorder');
     });
     //
     /* END YOUR ROUTE APLICATION */

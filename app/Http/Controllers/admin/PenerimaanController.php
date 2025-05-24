@@ -15,7 +15,7 @@ class PenerimaanController extends Controller
      */
     public function index()
     {
-        $data['title'] = 'Data Penerimaan Barang';
+        $data['title'] = 'Pembelian Barang';
         $data['rs_data'] = Penerimaan::with('produk')->orderBy('created_at', 'DESC')->paginate(20);
         // dd($data);
         return view('admin.penerimaan.index', $data);
@@ -26,7 +26,7 @@ class PenerimaanController extends Controller
      */
     public function create()
     {
-        $data['title'] = 'Tambah Data Penerimaan Barang';
+        $data['title'] = 'Tambah Pembelian Barang';
         $data['rs_produk'] = Produk::orderBy('produk_nama', 'ASC')->get();
         // dd($data);
         return view('admin.penerimaan.add', $data);
@@ -87,7 +87,7 @@ class PenerimaanController extends Controller
         if (empty($detail)) {
             return redirect()->route('penerimaanBarang')->with('error', 'data tidak ditemukan');
         }
-        $data['title'] = 'Ubah Data Penerimaan Barang';
+        $data['title'] = 'Ubah Pembelian Barang';
         $data['rs_produk'] = Produk::orderBy('produk_nama', 'ASC')->get();
         // dd($data);
         return view('admin.penerimaan.edit', $data);
