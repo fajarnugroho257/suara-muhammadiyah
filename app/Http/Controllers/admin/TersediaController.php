@@ -15,7 +15,7 @@ class TersediaController extends Controller
     public function index()
     {
         $data['title'] = 'Data Stok Barang';
-        $data['rs_produk'] = Produk::with('kategori')->orderBy(DB::raw('CAST(produk_stok AS UNSIGNED)'), 'DESC')->paginate(20);
+        $data['rs_produk'] = Produk::with('kategori', 'hitung_eoq')->orderBy(DB::raw('CAST(produk_stok AS UNSIGNED)'), 'DESC')->paginate(20);
         // dd($data);
         return view('admin.tersedia.index', $data);
     }

@@ -45,6 +45,7 @@
                                 <th>Nama Produk</th>
                                 <th>Rating Produk</th>
                                 <th>Harga</th>
+                                <th>Reorder Point</th>
                                 <th>Stok</th>
                                 <th>Gambar</th>
                             </tr>
@@ -63,6 +64,7 @@
                                     </td>
                                     <td class="text-center">Rp {{ number_format($produk->produk_harga, 0, ',', '.') }}
                                     </td>
+                                    <td class="text-center">{{ $produk->hitung_eoq ? $produk->hitung_eoq->eoq_rop : 'Belum dihitung' }}</td>
                                     <td class="text-center">{{ $produk->produk_stok }}</td>
                                     <td class="text-center"><img class="img-fluid img-thumbnail" height="50"
                                             width="50" src="{{ asset('image/produk/' . $produk->produk_image) }}"
