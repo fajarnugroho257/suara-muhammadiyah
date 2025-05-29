@@ -10,7 +10,7 @@ use App\Models\admin\Produk;
 use App\Models\admin\Produk_image;
 use App\Models\admin\UserData;
 use App\Models\User;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class BerandaController extends Controller

@@ -54,7 +54,7 @@
                                     <th style="width: 10px">No</th>
                                     <th>Produk</th>
                                     <th>Status</th>
-                                    <th>Masuk</th>
+                                    <th>Awal</th>
                                     <th>Jumlah</th>
                                     <th>Akhir</th>
                                     <th>Tanggal</th>
