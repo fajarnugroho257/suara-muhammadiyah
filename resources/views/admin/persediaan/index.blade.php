@@ -132,10 +132,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($rs_tdk_bergerak as $key => $tdk_bergerak)
                                 @php
                                     $no = 1;
                                 @endphp
+                                @foreach ($rs_tdk_bergerak as $key => $tdk_bergerak)
                                     <tr>
                                         <td class="text-center">{{ $no++ }}</td>
                                         <td><img class="img-fluid img-thumbnail" height="50" width="50" src="{{ asset('image/produk/' . $tdk_bergerak->produk_image) }}"alt=""> {{ $tdk_bergerak->produk_nama }}</td>
