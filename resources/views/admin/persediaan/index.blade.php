@@ -55,7 +55,7 @@
                                     <th>Produk</th>
                                     <th>Status</th>
                                     <th>Masuk</th>
-                                    <th>Keluar</th>
+                                    <th>Jumlah</th>
                                     <th>Akhir</th>
                                     <th>Tanggal</th>
                                 </tr>
