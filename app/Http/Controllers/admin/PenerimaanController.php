@@ -5,7 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\admin\Penerimaan;
 use App\Models\admin\Produk;
-use Auth;
+use App\Models\admin\ProdukLog;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class PenerimaanController extends Controller
@@ -63,7 +64,17 @@ class PenerimaanController extends Controller
             $result = $awal + $penambahan;
             //
             $produk->produk_stok = $result;
-            $produk->update();
+            if($produk->update()){
+                ProdukLog::create([
+                    'produk_id' => $produk->id,
+                    'user_id' => Auth::user()->user_id,
+                    'log_awal' => $awal,
+                    'log_jumlah' => $penambahan,
+                    'log_akhir' => $result,
+                    'log_st' => 'masuk',
+                    'log_date' => date('Y-m-d'),
+                ]);
+            }
             return redirect()->route('addPenerimaanBarang')->with('success', 'Data berhasil disimpan');
         } else {
             return redirect()->route('addPenerimaanBarang')->with('error', 'Data gagal disimpan');

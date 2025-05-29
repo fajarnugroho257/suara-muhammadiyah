@@ -6,8 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\admin\Pesanan;
 use App\Models\admin\PesananData;
 use App\Models\admin\Produk;
+use App\Models\admin\ProdukLog;
 use Barryvdh\DomPDF\Facade\Pdf;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class PesananController extends Controller
@@ -41,14 +42,29 @@ class PesananController extends Controller
             return redirect()->route('dataPesanan')->with('error', 'Data tidak ditemukan');
         }
         $pesanan_data = PesananData::where('pesanan_id', $pesanan->pesanan_id)->get();
-        // dd($pesanan_data);
+        // dd($pesanan->user_id);
         foreach ($pesanan_data as $key => $value) {
             $produk = Produk::where('id', $value['produk_id'])->first();
             $stok = $produk->produk_stok;
             $sisa = $stok - $value['data_jlh'];
             // update produk
             $produk->produk_stok = $sisa;
-            $produk->save();
+            if($produk->save()){
+                // insert log
+                $awal = $stok;
+                $keluar = $value['data_jlh'];
+                $akhir = $sisa;
+                // 
+                ProdukLog::create([
+                    'produk_id' => $produk->id,
+                    'user_id' => $pesanan->user_id,
+                    'log_awal' => $awal,
+                    'log_jumlah' => $keluar,
+                    'log_akhir' => $akhir,
+                    'log_st' => 'keluar',
+                    'log_date' => date('Y-m-d'),
+                ]);
+            }
         }
         // die;
         $pesanan->pesanan_st = $status;

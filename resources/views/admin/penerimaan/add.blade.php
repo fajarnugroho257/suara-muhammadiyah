@@ -77,7 +77,7 @@
                             <div class="row">
                                 <div class="col-3">
                                     <div class="form-group">
-                                        <label>Penerimaan Stok</label>
+                                        <label>Pembelian Stok</label>
                                         <input type="text" required onkeyup="hitunPenambahan()" id="penerimaan_jumlah"
                                             name="penerimaan_jumlah" class="form-control" placeholder="Penerimaan Stok">
                                     </div>
@@ -108,14 +108,14 @@
                                 </div>
                                 <div class="col-3">
                                     <div class="form-group">
-                                        <label>Harga Pemerimaan</label>
+                                        <label>Harga Pembelian</label>
                                         <input type="number" required name="penerimaan_harga" class="form-control"
                                             placeholder="Harga Pemerimaan">
                                     </div>
                                 </div>
                                 <div class="col-3">
                                     <div class="form-group">
-                                        <label>Tanggal Pemerimaan</label>
+                                        <label>Tanggal Pembelian</label>
                                         <input type="date" value="{{ now()->format('Y-m-d') }}" required
                                             name="penerimaan_tgl" class="form-control" placeholder="Tanggal Pemerimaan">
                                     </div>

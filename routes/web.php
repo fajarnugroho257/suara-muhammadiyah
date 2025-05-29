@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\MasterKategoriController;
 use App\Http\Controllers\admin\NotifRecorderController;
 use App\Http\Controllers\admin\PendapatanController;
 use App\Http\Controllers\admin\PenerimaanController;
+use App\Http\Controllers\admin\PersediaanBarangController;
 use App\Http\Controllers\admin\PesananController;
 use App\Http\Controllers\admin\PrefController;
 use App\Http\Controllers\admin\ProdukController;
@@ -207,6 +208,10 @@ Route::middleware(['auth'])->group(function () {
     // notif
     Route::middleware(['hasRole.page:notifRecorder'])->prefix('admin')->group(function () {
         Route::get('/notif-recorder', [NotifRecorderController::class, 'index'])->name('notifRecorder');
+    });
+    // persediaan
+    Route::middleware(['hasRole.page:persediaanBarang'])->prefix('admin')->group(function () {
+        Route::get('/persediaan-barang', [PersediaanBarangController::class, 'index'])->name('persediaanBarang');
     });
     //
     /* END YOUR ROUTE APLICATION */

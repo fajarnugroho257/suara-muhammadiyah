@@ -46,4 +46,9 @@ class Produk extends Model
     {
         return $this->hasOne(HitungEoq::class, 'produk_id', 'id');
     }
+
+    public function produk_log()
+    {
+        return $this->hasMany(Produk_image::class, 'produk_id', 'id');
+    }
 }
