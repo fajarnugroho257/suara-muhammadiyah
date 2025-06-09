@@ -191,6 +191,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/add-data-penerimaan-barang', [PenerimaanController::class, 'create'])->name('addPenerimaanBarang');
         Route::post('/add-proses-data-penerimaan-barang', [PenerimaanController::class, 'store'])->name('addProcessPenerimaanBarang');
         Route::get('/edit-data-penerimaan-barang/{id}', [PenerimaanController::class, 'edit'])->name('updatePenerimaanBarang');
+        Route::post('/edit-proses-data-penerimaan-barang/{id}', [PenerimaanController::class, 'update'])->name('editProcessPenerimaanBarang');
         //
         Route::get('/delete-process-data-penerimaan-barang/{id}', [PenerimaanController::class, 'destroy'])->name('deletePenerimaan');
 
@@ -212,6 +213,10 @@ Route::middleware(['auth'])->group(function () {
     // persediaan
     Route::middleware(['hasRole.page:persediaanBarang'])->prefix('admin')->group(function () {
         Route::get('/persediaan-barang', [PersediaanBarangController::class, 'index'])->name('persediaanBarang');
+        Route::post('/search-log-barang', [PersediaanBarangController::class, 'search_log'])->name('searchLog');
+        Route::get('/download-log-barang', [PersediaanBarangController::class, 'download_log_barang'])->name('downloadLogBarang');
+        Route::get('/download-penjualan-barang', [PersediaanBarangController::class, 'download_penjualan_barang'])->name('downloadFrekuensiBarang');
+        
     });
     //
     /* END YOUR ROUTE APLICATION */

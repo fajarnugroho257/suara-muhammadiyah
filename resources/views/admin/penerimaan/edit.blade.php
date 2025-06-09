@@ -32,7 +32,7 @@
                             Kembali</a>
                     </div>
                 </div>
-                <form action="{{ route('addProcessPenerimaanBarang') }}" method="POST">
+                <form action="{{ route('editProcessPenerimaanBarang', $detail->id) }}" method="POST">
                     @method('POST')
                     @csrf
                     <div class="card-body">
@@ -63,8 +63,7 @@
                                         style="width: 100%;">
                                         <option value=""></option>
                                         @foreach ($rs_produk as $produk)
-                                            <option value="{{ $produk->id }}">
-                                                {{ $produk->produk_nama }}</option>
+                                            <option value="{{ $produk->id }}" @selected($detail->produk_id == $produk->id)>{{ $produk->produk_nama }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -78,7 +77,7 @@
                                 <div class="col-3">
                                     <div class="form-group">
                                         <label>Penerimaan Stok</label>
-                                        <input type="text" required onkeyup="hitunPenambahan()" id="penerimaan_jumlah"
+                                        <input type="text" required onkeyup="hitunPenambahan()" id="penerimaan_jumlah" value="{{ old('penerimaan_jumlah', $detail->penerimaan_jumlah) }}"
                                             name="penerimaan_jumlah" class="form-control" placeholder="Penerimaan Stok">
                                     </div>
                                 </div>
@@ -102,22 +101,20 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label>Suplier</label>
-                                        <input type="text" required name="penerimaan_suplier" class="form-control"
-                                            placeholder="Suplier">
+                                        <input type="text" required name="penerimaan_suplier" class="form-control" placeholder="Suplier" value="{{ old('penerimaan_jumlah', $detail->penerimaan_suplier) }}">
                                     </div>
                                 </div>
                                 <div class="col-3">
                                     <div class="form-group">
                                         <label>Harga Pemerimaan</label>
-                                        <input type="number" required name="penerimaan_harga" class="form-control"
-                                            placeholder="Harga Pemerimaan">
+                                        <input type="number" required name="penerimaan_harga" class="form-control" placeholder="Harga Pemerimaan" value="{{ old('penerimaan_jumlah', $detail->penerimaan_harga) }}">
                                     </div>
                                 </div>
                                 <div class="col-3">
                                     <div class="form-group">
                                         <label>Tanggal Pemerimaan</label>
                                         <input type="date" value="{{ now()->format('Y-m-d') }}" required
-                                            name="penerimaan_tgl" class="form-control" placeholder="Tanggal Pemerimaan">
+                                            name="penerimaan_tgl" class="form-control" placeholder="Tanggal Pemerimaan" value="{{ old('penerimaan_jumlah', $detail->penerimaan_tgl) }}">
                                     </div>
                                 </div>
                             </div>
@@ -174,6 +171,7 @@
                     }
                 });
             });
+            $('#produk_id').trigger('change');
         });
         // hitung
         function hitunPenambahan() {

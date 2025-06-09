@@ -58,6 +58,9 @@ class PenerimaanController extends Controller
 
         if (Penerimaan::create($params)) {
             //
+            // last ID Penerimaan
+            $penerimaan_id = Penerimaan::latest('id')->value('id');
+            // 
             $produk = Produk::findOrFail($request->produk_id);
             $awal = $produk->produk_stok;
             $penambahan = $request->penerimaan_jumlah;
@@ -72,6 +75,7 @@ class PenerimaanController extends Controller
                     'log_jumlah' => $penambahan,
                     'log_akhir' => $result,
                     'log_st' => 'masuk',
+                    'log_id_ref' => $penerimaan_id,
                     'log_date' => date('Y-m-d'),
                 ]);
             }
@@ -95,11 +99,13 @@ class PenerimaanController extends Controller
     public function edit(string $id)
     {
         $detail = Penerimaan::findOrFail($id);
+        // dd($detail);
         if (empty($detail)) {
             return redirect()->route('penerimaanBarang')->with('error', 'data tidak ditemukan');
         }
         $data['title'] = 'Ubah Pembelian Barang';
         $data['rs_produk'] = Produk::orderBy('produk_nama', 'ASC')->get();
+        $data['detail'] = $detail;
         // dd($data);
         return view('admin.penerimaan.edit', $data);
     }
@@ -109,8 +115,41 @@ class PenerimaanController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'produk_id' => 'required',
+            'stok_now' => 'required',
+            'stok_hasil' => 'required',
+            'penerimaan_suplier' => 'required',
+            'penerimaan_harga' => 'required',
+            'penerimaan_tgl' => 'required',
+            'penerimaan_jumlah' => 'required',
+        ]);
 
-
+        $detail = Penerimaan::findOrFail($id);
+        // dd($detail);
+        if (empty($detail)) {
+            return redirect()->route('penerimaanBarang')->with('error', 'data tidak ditemukan');
+        }
+        // 
+        $detail->produk_id = $request->produk_id;
+        $detail->penerimaan_jumlah = $request->penerimaan_jumlah;
+        $detail->penerimaan_tgl = $request->penerimaan_tgl;
+        $detail->penerimaan_suplier = $request->penerimaan_suplier;
+        $detail->penerimaan_harga = $request->penerimaan_harga;
+        // 
+        $logBarang = ProdukLog::where('log_id_ref', $id)->first();
+        // dd($logBarang);
+        
+        if ($detail->save()) {
+            $penambahan = $request->penerimaan_jumlah;
+            $result = $logBarang->log_awal + $penambahan;
+            $logBarang->log_jumlah = $penambahan;
+            $logBarang->log_akhir = $result;
+            // 
+            if($logBarang->save()){
+                return redirect()->route('updatePenerimaanBarang', $id)->with('success', 'data berhasil diupdate');
+            }
+        }
     }
 
     /**

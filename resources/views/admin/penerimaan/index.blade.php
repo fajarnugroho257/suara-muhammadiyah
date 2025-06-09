@@ -68,8 +68,8 @@
                                         {{ \Carbon\Carbon::parse($data->penerimaan_tgl)->translatedFormat('d F Y') }}</td>
                                     <td class="text-center">{{ $data->penerimaan_suplier }}</td>
                                     <td class="text-center">
-                                        {{-- <a href="{{ route('updatePenerimaanBarang', [$data->id]) }}"
-                                            class="btn btn-sm btn-warning"><i class="fa fa-pen"></i></a> --}}
+                                        <a href="{{ route('updatePenerimaanBarang', [$data->id]) }}"
+                                            class="btn btn-sm btn-warning"><i class="fa fa-pen"></i></a>
                                         <a href="{{ route('deletePenerimaan', [$data->id]) }}"
                                             onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')"
                                             class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>

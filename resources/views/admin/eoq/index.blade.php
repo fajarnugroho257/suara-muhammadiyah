@@ -96,7 +96,7 @@
                                         </div>
                                         <div class="col-8">
                                             <input type="number" id="hari_per_tahun" name="hari_per_tahun"
-                                                class="form-control" placeholder="Hari kerja per tahun (W)">
+                                                class="form-control" placeholder="Hari kerja per tahun (W)" value="313">
                                         </div>
                                     </div>
                                     <div class="row mb-2">
@@ -220,7 +220,7 @@
                             $('#biaya_pesan').val(null);
                             $('#biaya_simpan').val(null);
                             $('#harga_per_unit').val(null);
-                            $('#hari_per_tahun').val(null);
+                            $('#hari_per_tahun').val(313);
                             $('#jangka_waktu').val(null);
                             // 
                             $('#res_eoq').val(null);
