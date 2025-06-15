@@ -37,23 +37,20 @@ class PersediaanBarangController extends Controller
                         ->paginate(20);
         $data['rs_penjualan'] = PesananData::select('produk_id', DB::raw('SUM(data_jlh) AS jlh_terjual'))
                                 ->whereHas('pesanan', function ($query) use ($start, $end) {
-                                    $query->whereBetween('pesanan_tgl', [$start, $end])
+                                    $query->whereBetween(DB::raw('DATE(pesanan_tgl)'), [$start, $end])
                                     ->where('pesanan_st', 'approve');
                                 })
                                 ->groupBy('produk_id')
                                 ->orderByDesc(DB::raw('SUM(data_jlh)'))
                                 ->get();
-                                // dd($data['rs_penjualan']);
         // produk tidak bergerak selama 3 bulan terakhir
-        $produkTidakBergerak = Produk::whereNotIn('id', function ($query) use ($start, $end) {
-                                $query->select('produk_id')
-                                    ->from('pesanan_data as a')
-                                    ->join('pesanan as b', 'a.pesanan_id', '=', 'b.pesanan_id')
-                                    ->where('b.pesanan_st', 'approve')
-                                    ->whereBetween('b.created_at', [$start, $end]);
-                            })->leftJoin('pesanan_data as pd', 'id', '=', 'pd.produk_id')
-                            ->select('pd.data_id', 'pd.created_at', 'produk.produk_nama', 'produk.produk_image', 'produk.produk_stok')
-                            ->orderByDesc('pd.created_at')
+        $produkTidakBergerak = DB::table('produk as a')
+                            ->whereNotIn('a.id', function ($query) {
+                                $query->select('b.produk_id')
+                                    ->from('pesanan_data as b')
+                                    ->whereDate('b.created_at', '>=', DB::raw('DATE_SUB(CURDATE(), INTERVAL 3 MONTH)'))
+                                    ->groupBy('b.produk_id');
+                            })
                             ->get();
         $data['rs_tdk_bergerak'] = $produkTidakBergerak;
         // dd($data);
@@ -117,7 +114,7 @@ class PersediaanBarangController extends Controller
         // 
         $rs_data = PesananData::select('produk_id', DB::raw('SUM(data_jlh) AS jlh_terjual'))
                                 ->whereHas('pesanan', function ($query) use ($start, $end) {
-                                    $query->whereBetween('pesanan_tgl', [$start, $end])
+                                    $query->whereBetween(DB::raw('DATE(pesanan_tgl)'), [$start, $end])
                                     ->where('pesanan_st', 'approve');
                                 })
                                 ->groupBy('produk_id')

@@ -39,7 +39,7 @@ class ProdukController extends Controller
         $this->validate($request, [
             'kategori_id' => 'required',
             'produk_nama' => 'required',
-            'produk_rating' => 'required',
+            // 'produk_rating' => 'required',
             'produk_deskripsi' => 'required',
             'produk_harga' => 'required',
             // 'produk_stok' => 'required',
@@ -62,7 +62,7 @@ class ProdukController extends Controller
         $st_produk = Produk::create([
             'kategori_id' => $request->kategori_id,
             'produk_nama' => $request->produk_nama,
-            'produk_rating' => $request->produk_rating,
+            'produk_rating' => 0,
             'produk_deskripsi' => $request->produk_deskripsi,
             'produk_harga' => $request->produk_harga,
             'produk_stok' => 0,
@@ -144,7 +144,7 @@ class ProdukController extends Controller
             'id' => 'required',
             'kategori_id' => 'required',
             'produk_nama' => 'required',
-            'produk_rating' => 'required',
+            // 'produk_rating' => 'required',
             'produk_deskripsi' => 'required',
             'produk_harga' => 'required',
             // 'produk_stok' => 'required',
@@ -166,7 +166,7 @@ class ProdukController extends Controller
         // params
         $detail->kategori_id = $request->kategori_id;
         $detail->produk_nama = $request->produk_nama;
-        $detail->produk_rating = $request->produk_rating;
+        $detail->produk_rating = 0;
         $detail->produk_deskripsi = $request->produk_deskripsi;
         $detail->produk_harga = $request->produk_harga;
         $detail->produk_image = $produk_image;

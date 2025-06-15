@@ -43,7 +43,7 @@
                                 <th style="width: 10px">No</th>
                                 <th>Kategori</th>
                                 <th>Nama Produk</th>
-                                <th>Rating Produk</th>
+                                {{-- <th>Rating Produk</th> --}}
                                 <th>Harga</th>
                                 <th>Reorder Point</th>
                                 <th>Stok</th>
@@ -57,11 +57,11 @@
                                     <td class="text-center">{{ $rs_produk->firstItem() + $key }}</td>
                                     <td>{{ $produk->kategori->kategori_nama }}</td>
                                     <td>{{ $produk->produk_nama }}</td>
-                                    <td class="text-center">
+                                    {{-- <td class="text-center">
                                         @for ($i = 0; $i < $produk->produk_rating; $i++)
                                             <i class="fa fa-star" style="color: yellow"></i>
                                         @endfor
-                                    </td>
+                                    </td> --}}
                                     <td class="text-center">Rp {{ number_format($produk->produk_harga, 0, ',', '.') }}
                                     </td>
                                     <td class="text-center">{{ $produk->hitung_eoq ? $produk->hitung_eoq->eoq_rop : 'Belum dihitung' }}</td>

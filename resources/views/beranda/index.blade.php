@@ -47,11 +47,11 @@
                                 alt="">
                         </div>
                         <div class="text-center py-3 border-b-2 border-l-2 border-r-2">
-                            <div>
+                            {{-- <div>
                                 @for ($i = 0; $i < $produk->produk_rating; $i++)
                                     <i class="fa fa-star text-xs text-yellow-400"></i>
                                 @endfor
-                            </div>
+                            </div> --}}
                             <p class="text-sm font-medium text-royalBule">{{ $produk->produk_nama }}</p>
                             <p class="text-xs">Rp {{ number_format($produk->produk_harga, 0, ',', '.') }}</p>
                         </div>

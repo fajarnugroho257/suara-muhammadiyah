@@ -63,20 +63,20 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-6">
                                     <div class="form-group">
                                         <label>Nama Produk</label>
                                         <input type="text" value="{{ old('produk_nama', $detail->produk_nama) }}"
                                             name="produk_nama" class="form-control" placeholder="Nama Produk">
                                     </div>
                                 </div>
-                                <div class="col-3">
+                                {{-- <div class="col-3">
                                     <div class="form-group">
                                         <label>Rating Produk</label>
                                         <input type="number" value="{{ old('produk_rating', $detail->produk_rating) }}"
                                             name="produk_rating" class="form-control" placeholder="Rating Produk">
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="row">
                                 <div class="col-3">

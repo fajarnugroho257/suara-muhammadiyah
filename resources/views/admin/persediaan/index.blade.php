@@ -178,7 +178,7 @@
                                     <th style="width: 10px">No</th>
                                     <th>Produk</th>
                                     <th>Stok</th>
-                                    <th>Terkahir Penjualan</th>
+                                    {{-- <th>Terkahir Penjualan</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -190,8 +190,8 @@
                                         <td class="text-center">{{ $no++ }}</td>
                                         <td><img class="img-fluid img-thumbnail" height="50" width="50" src="{{ asset('image/produk/' . $tdk_bergerak->produk_image) }}"alt=""> {{ $tdk_bergerak->produk_nama }}</td>
                                         <td class="text-center">{{ $tdk_bergerak->produk_stok }}</td>
-                                        <td class="text-center">
-                                            {{ \Carbon\Carbon::parse($tdk_bergerak->created_at)->translatedFormat('d F Y : H:m:s') }}</td>
+                                        {{-- <td class="text-center">
+                                            {{ \Carbon\Carbon::parse($tdk_bergerak->created_at)->translatedFormat('d F Y : H:m:s') }}</td> --}}
                                     </tr>
                                 @endforeach
                             </tbody>
