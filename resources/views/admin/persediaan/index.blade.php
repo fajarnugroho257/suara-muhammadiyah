@@ -37,10 +37,10 @@
                     <a class="nav-link active" id="custom-tabs-three-home-tab" data-toggle="pill" href="#custom-tabs-three-home" role="tab" aria-controls="custom-tabs-three-home" aria-selected="false">Arus Barang</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-three-profile-tab" data-toggle="pill" href="#custom-tabs-three-profile" role="tab" aria-controls="custom-tabs-three-profile" aria-selected="true">Frekuensi Barang</a>
+                    <a class="nav-link" id="custom-tabs-three-profile-tab" data-toggle="pill" href="#custom-tabs-three-profile" role="tab" aria-controls="custom-tabs-three-profile" aria-selected="true">Frekuensi Barang Tinggi</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-three-messages-tab" data-toggle="pill" href="#custom-tabs-three-messages" role="tab" aria-controls="custom-tabs-three-messages" aria-selected="false">Barang Tidak Bergerak</a>
+                    <a class="nav-link" id="custom-tabs-three-messages-tab" data-toggle="pill" href="#custom-tabs-three-messages" role="tab" aria-controls="custom-tabs-three-messages" aria-selected="false">Frekuensi Barang Rendah</a>
                   </li>
                 </ul>
               </div>
@@ -127,7 +127,7 @@
                             @csrf
                             <div class="row">
                                 <div class="col">
-                                    <h3 class="card-title">Frekuensi penjualan</h3>
+                                    <h3 class="card-title">Frekuensi barang tinggi</h3>
                                 </div>
 
                                 <div class="col-6 d-flex" style="align-items: center; gap: 10px">
@@ -171,7 +171,7 @@
                 </div>
                 <div class="tab-pane fade" id="custom-tabs-three-messages" role="tabpanel" aria-labelledby="custom-tabs-three-messages-tab">
                     <div class="card-body">
-                        <h5>Produk tidak bergerak selama 3 bulan terakhir</h5>
+                        <h5>Frekuensi Barang Rendah</h5>
                         <table class="table table-bordered">
                             <thead>
                                 <tr class="text-center">
