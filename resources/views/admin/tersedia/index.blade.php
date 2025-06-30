@@ -52,7 +52,7 @@
                         </thead>
                         <tbody>
                             @foreach ($rs_produk as $key => $produk)
-                                @php $stColor = $produk->produk_stok <= 0 ? "table-danger" : "" @endphp
+                                @php $stColor = $produk->produk_stok <= ($produk->hitung_eoq ? $produk->hitung_eoq->eoq_rop : 0) ? "table-danger" : "" @endphp
                                 <tr class="{{ $stColor }}">
                                     <td class="text-center">{{ $rs_produk->firstItem() + $key }}</td>
                                     <td>{{ $produk->kategori->kategori_nama }}</td>

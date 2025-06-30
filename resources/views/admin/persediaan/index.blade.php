@@ -74,7 +74,7 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr class="text-center">
-                                    <th style="width: 10px">No</th>
+                                    <th style="width: 5%">No</th>
                                     <th>Kode Barang</th>
                                     <th>Barang</th>
                                     <th>Kategori</th>
@@ -90,23 +90,23 @@
                                 @php
                                     if ($data->log_st == 'masuk') {
                                         $log_st = '<span class="btn btn-sm btn-success">Masuk</span>';
-                                        $log_akhir = '<i class="fa fa-arrow-up text-success"></i>';
+                                        $log_akhir = '<i class="fa fa-arrow-down text-success"></i>';
                                         $text = 'text-success';
                                     } elseif ($data->log_st == 'keluar') {
                                         $log_st = '<span class="btn btn-sm btn-danger">Keluar</span>';
-                                        $log_akhir = '<i class="fa fa-arrow-down text-danger"></i>';
+                                        $log_akhir = '<i class="fa fa-arrow-up text-danger"></i>';
                                         $text = 'text-danger';
                                     }
                                 @endphp
                                     <tr>
-                                        <td class="text-center">{{ $rs_data->firstItem() + $key }}</td>
+                                        <td class="text-center">{{ $rs_data->firstItem() + $key }} {!! $log_akhir !!}</td>
                                         <td class="text-center">BRG{{ str_pad($data->produk->id, 3, '0', STR_PAD_LEFT) }} </td>
                                         <td><img class="img-fluid img-thumbnail" height="50" width="50" src="{{ asset('image/produk/' . $data->produk->produk_image) }}"alt=""> {{ $data->produk->produk_nama }}</td>
                                         <td>{{ $data->produk->kategori->kategori_nama }}</td>
                                         <td class="text-center">{!! $log_st !!}</td>
                                         <td class="text-center">{{ $data->log_awal }}</td>
                                         <td class="text-center {{ $text }}"><b>{{ $data->log_jumlah }}</b></td>
-                                        <td class="text-center">{{ $data->log_akhir }} {!! $log_akhir !!}</td>
+                                        <td class="text-center">{{ $data->log_akhir }} </td>
                                         <td class="text-center">
                                             {{ \Carbon\Carbon::parse($data->created_at)->translatedFormat('d F Y : H:m:s') }}</td>
                                     </tr>

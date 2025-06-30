@@ -130,21 +130,21 @@ class PenerimaanController extends Controller
         if (empty($detail)) {
             return redirect()->route('penerimaanBarang')->with('error', 'data tidak ditemukan');
         }
-        // 
-        $detail->produk_id = $request->produk_id;
+        // $detail->produk_id = $request->produk_id;
         $detail->penerimaan_jumlah = $request->penerimaan_jumlah;
         $detail->penerimaan_tgl = $request->penerimaan_tgl;
         $detail->penerimaan_suplier = $request->penerimaan_suplier;
         $detail->penerimaan_harga = $request->penerimaan_harga;
         // 
         $logBarang = ProdukLog::where('log_id_ref', $id)->first();
-        // dd($logBarang);
-        
         if ($detail->save()) {
-            $penambahan = $request->penerimaan_jumlah;
-            $result = $logBarang->log_awal + $penambahan;
-            $logBarang->log_jumlah = $penambahan;
-            $logBarang->log_akhir = $result;
+            // update produk stok
+            $produk = Produk::findOrFail($request->produk_id);
+            $produk->produk_stok = $request->stok_hasil;
+            $produk->update();
+            // update produk log
+            $logBarang->log_jumlah = $request->penerimaan_jumlah;
+            $logBarang->log_akhir = $request->stok_hasil;
             // 
             if($logBarang->save()){
                 return redirect()->route('updatePenerimaanBarang', $id)->with('success', 'data berhasil diupdate');
@@ -168,6 +168,8 @@ class PenerimaanController extends Controller
         if ($detail->delete()) {
             $produk->produk_stok = $result;
             $produk->update();
+            // delete produk log
+            ProdukLog::where('log_id_ref', $detail->id)->delete();
             //
             return redirect()->route('penerimaanBarang')->with('success', 'Data penerimaan berhasil dibapus, stok akan dikembalikan sesuai jumlah penerimaan');
         }

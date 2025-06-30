@@ -57,7 +57,7 @@
                         @endsession
                         <div class="form-group">
                             <div class="row mb-5">
-                                <div class="col-6">
+                                <div class="col-6 d-none">
                                     <label>Produk</label>
                                     <select class="form-control select2" required name="produk_id" id="produk_id" required
                                         style="width: 100%;">
@@ -149,17 +149,17 @@
                     success: function(response) {
                         if (response.success) {
                             // Tindakan jika permintaan berhasil
-                            console.log(response.message);
-                            console.log(response.image);
+                            // console.log(response);
+                            // console.log(response.image);
                             $('#produk_image').attr('src', response.image);
                             //
                             const penerimaanStok = $('#penerimaan_jumlah').val();
-                            const nowStok = response.data.produk_stok;
-                            const hasilPenambahan = parseInt(penerimaanStok) + parseInt(
-                                nowStok);
+                            let resStok = response.data.produk_stok - penerimaanStok;
+                            // const nowStok = response.data.produk_stok;
+                            const hasilPenambahan = parseInt(penerimaanStok) + parseInt(resStok);
                             $('#stok_hasil').val(hasilPenambahan);
                             // console.log($this);
-                            $('#stok_now').val(response.data.produk_stok);
+                            $('#stok_now').val(resStok);
                         } else {
                             alert(response.message);
                         }
